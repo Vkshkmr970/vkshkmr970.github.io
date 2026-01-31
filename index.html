@@ -102,12 +102,43 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            z-index: 1001;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
         .nav-links a {
@@ -690,22 +721,133 @@
         }
 
         /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            main {
+                padding: 5rem 3% 2rem;
+            }
+
+            .hero {
+                gap: 2rem;
+                min-height: auto;
+                padding: 2rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            header {
+                padding: 1rem 3%;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 1.5rem;
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--border-color);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                padding: 0.5rem 0;
+            }
+
+            .nav-links a::after {
+                bottom: 0;
+            }
+
+            main {
+                padding: 5rem 5% 2rem;
+            }
+
             .hero {
                 flex-direction: column;
                 text-align: center;
+                gap: 2rem;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
             }
 
             .hero-stats {
                 justify-content: center;
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
             }
 
             .cta-buttons {
                 justify-content: center;
+                width: 100%;
             }
 
-            .nav-links {
-                gap: 1rem;
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-visual {
+                width: 100%;
+            }
+
+            .code-window {
+                padding: 1rem;
+            }
+
+            .code-content {
+                font-size: 0.75rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .skill-category {
+                padding: 1.5rem;
             }
 
             .timeline::before {
@@ -713,18 +855,189 @@
             }
 
             .timeline-content {
-                width: calc(100% - 3rem);
-                margin-left: 3rem !important;
+                width: calc(100% - 2.5rem);
+                margin-left: 2.5rem !important;
+                padding: 1.5rem;
             }
 
             .timeline-dot {
                 left: 0;
                 transform: translateX(-50%);
+                width: 12px;
+                height: 12px;
             }
 
-            .projects-grid,
-            .skills-grid {
+            .timeline-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .timeline-company {
+                font-size: 0.9rem;
+            }
+
+            .timeline-description {
+                font-size: 0.9rem;
+            }
+
+            .timeline-description ul {
+                padding-left: 1rem;
+            }
+
+            .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .project-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-item {
+                padding: 1.5rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-tag {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .stat {
+                width: 100%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .window-header {
+                gap: 0.3rem;
+            }
+
+            .window-dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            .code-content {
+                font-size: 0.7rem;
+                line-height: 1.6;
+            }
+
+            .skill-icon {
+                font-size: 2rem;
+            }
+
+            .skill-category h3 {
+                font-size: 1.1rem;
+            }
+
+            .timeline-content {
+                width: calc(100% - 2rem);
+                margin-left: 2rem !important;
+                padding: 1.2rem;
+            }
+
+            .timeline-date {
+                font-size: 0.8rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .timeline-company {
+                font-size: 0.85rem;
+            }
+
+            .timeline-description {
+                font-size: 0.85rem;
+            }
+
+            .timeline-description li {
+                margin-bottom: 0.3rem;
+            }
+
+            .project-image {
+                height: 150px;
+                font-size: 2.5rem;
+            }
+
+            .project-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-description {
+                font-size: 0.9rem;
+            }
+
+            .tech-tag {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.6rem;
+            }
+
+            .skill-tag {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.7rem;
+            }
+
+            .contact-icon {
+                font-size: 2rem;
+            }
+
+            .contact-item h3 {
+                font-size: 1.1rem;
+            }
+
+            footer {
+                padding: 2rem 5%;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Landscape phone */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 1rem 0;
+            }
+
+            .hero-stats {
+                flex-direction: row;
+                gap: 1.5rem;
             }
         }
 
@@ -747,6 +1060,11 @@
     <header>
         <nav>
             <div class="logo">&lt;VK /&gt;</div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -1142,6 +1460,32 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
